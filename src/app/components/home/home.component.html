@@ -1,0 +1,14 @@
+<app-login *ngIf="!isLoggedIn"></app-login>
+
+<div *ngIf="isLoggedIn">
+    <!-- Placeholder menu goes here -->
+    <div class="p-4">
+        <h1 class="text-2xl font-bold mb-4">Menu</h1>
+        <ul class="space-y-2">
+            <li><a href="#" class="text-blue-500 hover:underline">Option 1</a></li>
+            <li><a href="#" class="text-blue-500 hover:underline">Option 2</a></li>
+            <li><a href="#" class="text-blue-500 hover:underline">Option 3</a></li>
+            <!-- Add more options as needed -->
+        </ul>
+    </div>
+</div>

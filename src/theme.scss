@@ -1,0 +1,144 @@
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$md-cagprimary: (
+    50 : #e0edeb,
+    100 : #b3d3cd,
+    200 : #80b5ac,
+    300 : #4d978b,
+    400 : #268172,
+    500 : #006b59,
+    600 : #006351,
+    700 : #005848,
+    800 : #004e3e,
+    900 : #003c2e,
+    A100 : #72ffd5,
+    A200 : #3fffc6,
+    A400 : #0cffb7,
+    A700 : #00f1aa,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-cagsecondary: (
+    50 : #f3f1f4,
+    100 : #e0dde4,
+    200 : #cbc6d2,
+    300 : #b6afbf,
+    400 : #a79db2,
+    500 : #978ca4,
+    600 : #8f849c,
+    700 : #847992,
+    800 : #7a6f89,
+    900 : #695c78,
+    A100 : #f1e7ff,
+    A200 : #d5b5fd,
+    A400 : #b980ff,
+    A700 : #ab67ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$cag-process-site-primary: mat.define-palette($md-cagprimary);
+$cag-process-site-accent: mat.define-palette($md-cagsecondary, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$cag-process-site-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$cag-process-site-theme: mat.define-light-theme((
+  color: (
+    primary: $cag-process-site-primary,
+    accent: $cag-process-site-accent,
+    warn: $cag-process-site-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($cag-process-site-theme);
+
+$cag-process-site-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $cag-process-site-primary,
+    accent: $cag-process-site-accent,
+    warn: $cag-process-site-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+:root.dark {
+  --primary-color: #{mat.get-color-from-palette($cag-process-site-primary, 700)};
+  --accent-color: #{mat.get-color-from-palette($cag-process-site-accent, A400)};
+  --warn-color: #{mat.get-color-from-palette($cag-process-site-warn, 700)};
+}
+
+$primary-dark-color: mat.get-color-from-palette($cag-process-site-primary, 700);
+$accent-dark-color: mat.get-color-from-palette($cag-process-site-accent, A400);
+$warn-dark-color: mat.get-color-from-palette($cag-process-site-warn, 700);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$primary-color: mat.get-color-from-palette($cag-process-site-primary, 500);
+$accent-color: mat.get-color-from-palette($cag-process-site-accent, A200);
+$warn-color: mat.get-color-from-palette($cag-process-site-warn, 500);
+
+:root {
+  --primary-color: #{mat.get-color-from-palette($cag-process-site-primary, 500)};
+  --secondary-color-100: #{mat.get-color-from-palette($cag-process-site-accent, 500)};
+  --secondary-color-200: #{mat.get-color-from-palette($cag-process-site-accent, 200)};
+  --accent-color: #{mat.get-color-from-palette($cag-process-site-accent, A200)};
+  --warn-color: #{mat.get-color-from-palette($cag-process-site-warn, 500)};
+}

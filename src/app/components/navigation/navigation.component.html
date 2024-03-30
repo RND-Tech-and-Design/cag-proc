@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="sidenav">
+        <mat-nav-list class="w-72">
+            @for(route of routes; track route){
+            <a mat-list-item
+               [routerLink]="route.path"
+               routerLinkActive="active-route"
+               [routerLinkActiveOptions]="{ exact: true }">
+                {{route.title}}
+            </a>
+            }
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="sidenav.toggle()" class="flex items-center justify-center">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <nav class="flex items-center justify-center bg-green-500 ml-8 rounded-b-lg">
+                <span class="text-3xl p-2 m-4 ">
+                    Clean-n-Green
+                </span>
+            </nav>
+        </mat-toolbar>
+        <!-- Content goes here -->
+        <div class="mt-8">
+            <ng-content></ng-content>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
